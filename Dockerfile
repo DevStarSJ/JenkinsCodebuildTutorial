@@ -6,7 +6,7 @@ COPY . ${WORKDIR}
 WORKDIR ${WORKDIR}
 
 RUN yarn
-RUN yarn start
+RUN yarn tsc
 
 RUN chmod +x ci/entrypoint.sh
 ENTRYPOINT [ "ci/entrypoint.sh" ]
