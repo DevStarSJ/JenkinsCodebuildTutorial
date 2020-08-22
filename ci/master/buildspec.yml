@@ -1,0 +1,15 @@
+version: 0.2
+env:
+  variables:
+    AWS_ACCESS_KEY_ID: "---"
+    AWS_SECRET_ACCESS_KEY: "---"
+    AWS_DEFAULT_REGION: "ap-northeast-1"
+    ECR_URL: "---.dkr.ecr.ap-northeast-2.amazonaws.com"
+
+phases:
+  build:
+    commands:
+      - aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin $ECR_URL
+      - docker build -t tutorial .
+      - docker tag tutorial:latest $ECR_URL/tutorial:latest
+      - docker push $ECR_URL/tutorial:latest
