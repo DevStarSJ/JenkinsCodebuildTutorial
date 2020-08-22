@@ -37,3 +37,11 @@ resource "aws_subnet" "public_d" {
     Name = "Tutorial Subnet D" 
   }
 }
+
+resource "aws_subnet" "codebuild_private" {
+	vpc_id                  = aws_vpc.tutorial.id
+	cidr_block              = "172.32.64.0/20"
+	availability_zone       = "ap-northeast-2a"
+
+	tags = { Name = "Tutorial Private" }
+}

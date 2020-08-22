@@ -23,3 +23,14 @@ resource "aws_route_table_association" "public_d" {
 	subnet_id      = aws_subnet.public_d.id
 	route_table_id = aws_vpc.tutorial.default_route_table_id
 }
+
+resource "aws_route_table" "tutorial_private" {
+  vpc_id = aws_vpc.tutorial.id
+
+  tags = { Name = "Tutorial Route Private Table" }
+}
+
+resource "aws_route_table_association" "tutorial_private" {
+	subnet_id      = aws_subnet.codebuild_private.id
+	route_table_id = aws_route_table.tutorial_private.id
+}
